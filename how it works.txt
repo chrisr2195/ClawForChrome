@@ -1,0 +1,28 @@
+How it works (The Workflow)
+Connection: Upon startup, background.js attempts to connect to ws://localhost:8080.
+
+Outbound: When you click the button in the popup, the extension captures the URL of your current tab and sends it to your local OpenClaw instance.
+
+Inbound: OpenClaw can send JSON packets back to the browser to automate tasks (e.g., opening specific documentation or search results).
+
+
+
+Adding a Content Script is a game-changer because it allows the extension to "reach into" the website you are currently viewing. While the previous files handle the connection, the Content Script actually reads the text on the page.
+
+Technical Summary
+The architecture now follows a three-tier communication flow:
+
+Content Script: Extracts data from the DOM (Document Object Model) of the website.
+
+Background Script: Acts as the central hub, maintaining the WebSocket connection to your local OpenClaw (Moltbot) server.
+
+Local OpenClaw Instance: Processes the incoming data (e.g., summarizing the text or triggering a game event) and can send commands back.
+
+How to use it:
+Refresh the extension in chrome://extensions/.
+
+Open any website (e.g., a Wikipedia article).
+
+Click the "Scrape Page" button in your extension popup.
+
+Check your OpenClaw terminal/logs – you should see the website's text arriving there as a JSON object!

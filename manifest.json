@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "OpenClaw Browser Bridge",
+  "version": "1.0",
+  "description": "Connects Chrome with your local OpenClaw (Moltbot) instance.",
+  "permissions": ["tabs", "activeTab", "scripting"],
+  "host_permissions": ["http://localhost:8080/*"],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+
+{
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
+
+}
+}
